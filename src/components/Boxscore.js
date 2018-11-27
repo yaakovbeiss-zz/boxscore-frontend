@@ -5,6 +5,7 @@ import { minNumPeriodsPerSport, getSportByAbbreviation } from '../constants'
 import * as Api from '../api/Api'
 
 import ScoreDetails from './ScoreDetails'
+import TeamDetails from './TeamDetails'
 
 class Boxscore extends React.Component {
     static propTypes = {
@@ -34,7 +35,13 @@ class Boxscore extends React.Component {
         const minPeriods = minNumPeriodsPerSport[sport]
         const awayTeamAbbreviation = boxscore.awayTeam.abbr
         const homeTeamAbbreviation = boxscore.homeTeam.abbr
-        const { awayTeamDetails, homeTeamDetails } = boxscore
+        const { awayTeamDetails: awayTeamScoreDetails,
+                homeTeamDetails: homeTeamScoreDetails,
+                awayTeam: awayTeamDetails,
+                homeTeam: homeTeamDetails,
+                currentPeriod,
+                currentPeriodHalf,
+                status } = boxscore
 
         return (
             <div className="boxscore">
@@ -43,9 +50,16 @@ class Boxscore extends React.Component {
                     sport={sport}
                     awayTeamAbbreviation={awayTeamAbbreviation}
                     homeTeamAbbreviation={homeTeamAbbreviation}
+                    awayTeamScoreDetails={awayTeamScoreDetails}
+                    homeTeamScoreDetails={homeTeamScoreDetails}
+                />
+              <TeamDetails
+                    status={status}
+                    currentPeriod={currentPeriod}
+                    currentPeriodHalf={currentPeriodHalf}
                     awayTeamDetails={awayTeamDetails}
                     homeTeamDetails={homeTeamDetails}
-                />
+              />
             </div>
         )
     }

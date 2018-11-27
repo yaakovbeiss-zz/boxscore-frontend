@@ -10,22 +10,22 @@ class ScoreDetails extends React.Component {
         minPeriods: PropTypes.number.isRequired,
         awayTeamAbbreviation: PropTypes.string.isRequired,
         homeTeamAbbreviation: PropTypes.string.isRequired,
-        awayTeamDetails: PropTypes.array.isRequired,
-        homeTeamDetails: PropTypes.array.isRequired
+        awayTeamScoreDetails: PropTypes.array.isRequired,
+        homeTeamScoreDetails: PropTypes.array.isRequired
     }
 
     // get number of game periods. Game may have gone longer than min,
     // like overtime or extra innings in baseball
-    getNumPeriods = () => Math.max(this.props.awayTeamDetails.length, this.props.homeTeamDetails.length, this.props.minPeriods)
+    getNumPeriods = () => Math.max(this.props.awayTeamScoreDetails.length, this.props.homeTeamScoreDetails.length, this.props.minPeriods)
 
     getPeriodDetails = (period, allDetails) => {
         return allDetails.find( detail => (detail.number === period) || (detail.sequence === period) )
     }
 
     renderPeriodDetails = (period) => {
-        const { awayTeamDetails, homeTeamDetails, sport } = this.props
-        const awayTeamPeriodDetails = this.getPeriodDetails(period, awayTeamDetails)
-        const homeTeamPeriodDetails = this.getPeriodDetails(period, homeTeamDetails)
+        const { awayTeamScoreDetails, homeTeamScoreDetails, sport } = this.props
+        const awayTeamPeriodDetails = this.getPeriodDetails(period, awayTeamScoreDetails)
+        const homeTeamPeriodDetails = this.getPeriodDetails(period, homeTeamScoreDetails)
 
         return (<PeriodDetails
                     key={period}
@@ -57,8 +57,8 @@ class ScoreDetails extends React.Component {
                 <div className="row final-scores">
                     <FinalScoreDetails
                           sport={this.props.sport}
-                          awayTeamDetails={this.props.awayTeamDetails}
-                          homeTeamDetails={this.props.homeTeamDetails}
+                          awayTeamScoreDetails={this.props.awayTeamScoreDetails}
+                          homeTeamScoreDetails={this.props.homeTeamScoreDetails}
                     />
                 </div>
             </div>

@@ -2,6 +2,7 @@
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
+    border-radius: 4px;
     display: inline-block;
 }
 
@@ -36,4 +37,12 @@
 
 .border-bottom {
     border-bottom: 1px solid #ddd;
+}
+
+.team-box {
+    width: 40%;
+}
+
+.space-between {
+    justify-content: space-between;
 }

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 class FinalScoreDetails extends React.Component {
     static propTypes = {
         sport: PropTypes.string.isRequired,
-        awayTeamDetails: PropTypes.array.isRequired,
-        homeTeamDetails: PropTypes.array.isRequired
+        awayTeamScoreDetails: PropTypes.array.isRequired,
+        homeTeamScoreDetails: PropTypes.array.isRequired
     }
 
     getTotalScoreForTeam = (teamDetails) => {
@@ -25,11 +25,11 @@ class FinalScoreDetails extends React.Component {
     }
 
     render() {
-        const { awayTeamDetails, homeTeamDetails, sport } = this.props
+        const { awayTeamScoreDetails, homeTeamScoreDetails, sport } = this.props
         // only baseball displays score differently
         if (sport === "baseball") {
-            const awayTeamStats = this.getRunsHitsErrorsForTeam(awayTeamDetails)
-            const homeTeamStats = this.getRunsHitsErrorsForTeam(homeTeamDetails)
+            const awayTeamStats = this.getRunsHitsErrorsForTeam(awayTeamScoreDetails)
+            const homeTeamStats = this.getRunsHitsErrorsForTeam(homeTeamScoreDetails)
 
             return (
                 <div className="row">
@@ -55,8 +55,8 @@ class FinalScoreDetails extends React.Component {
         return (
             <div>
                 <div className="box">Total</div>
-                <div className="box">{this.getTotalScoreForTeam(awayTeamDetails)}</div>
-                <div className="box">{this.getTotalScoreForTeam(homeTeamDetails)}</div>
+                <div className="box">{this.getTotalScoreForTeam(awayTeamScoreDetails)}</div>
+                <div className="box">{this.getTotalScoreForTeam(homeTeamScoreDetails)}</div>
             </div>
         )
     }
