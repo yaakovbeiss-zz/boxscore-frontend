@@ -25,7 +25,7 @@ class TeamDetails extends React.Component {
         return (
             <div className="row space-between">
                 { this.renderTeam(this.props.awayTeamDetails) }
-                <div>{ this.props.currentPeriod }</div>
+                <div className="current-period grey-background bold">{ this.props.currentPeriod }</div>
                 { this.renderTeam(this.props.homeTeamDetails) }
             </div>
         )
