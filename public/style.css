@@ -41,6 +41,8 @@
 
 .team-box {
     width: 40%;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .space-between {
