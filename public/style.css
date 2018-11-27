@@ -43,8 +43,10 @@
     width: 40%;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 24px;
 }
 
 .space-between {
     justify-content: space-between;
+    align-items: center;
 }
