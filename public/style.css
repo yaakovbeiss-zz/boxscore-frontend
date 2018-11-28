@@ -39,11 +39,19 @@
     border-bottom: 1px solid #ddd;
 }
 
+.teams-and-period {
+    height: 40px;
+}
+
 .team-box {
+    height: 100%;
     width: 40%;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .space-between {
@@ -53,7 +61,7 @@
 
 .current-period {
     width: 20%;
-    height: 28px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

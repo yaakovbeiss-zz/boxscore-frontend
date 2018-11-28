@@ -5,7 +5,7 @@ import { minNumPeriodsPerSport, getSportByAbbreviation } from '../constants'
 import * as Api from '../api/Api'
 
 import ScoreDetails from './ScoreDetails'
-import TeamDetails from './TeamDetails'
+import TeamsAndPeriod from './TeamsAndPeriod'
 
 class Boxscore extends React.Component {
     static propTypes = {
@@ -17,9 +17,27 @@ class Boxscore extends React.Component {
     }
 
     componentWillMount() {
-        Api.fetchGameBoxscore(this.props.gameId)
+        this.fetchGameBoxscore(this.props.gameId)
+
+        // check for new feed every 5 seconds
+        this.timer = setInterval(() => this.fetchGameBoxscore(this.props.gameId), 5000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
+    }
+
+    componentDidUpdate(prevProps) {
+        const { gameId: prevGameId } = prevProps
+        const { gameId: currGameId } = this.props
+        if (prevGameId !== currGameId) {
+            this.fetchGameBoxscore(currGameId)
+        }
+    }
+
+    fetchGameBoxscore = (gameId) => {
+        Api.fetchGameBoxscore(gameId)
             .then( boxscore => {
-                console.log(boxscore)
                 this.setState({ boxscore })
             })
     }
@@ -53,8 +71,9 @@ class Boxscore extends React.Component {
                     awayTeamScoreDetails={awayTeamScoreDetails}
                     homeTeamScoreDetails={homeTeamScoreDetails}
                 />
-              <TeamDetails
+              <TeamsAndPeriod
                     status={status}
+                    sport={sport}
                     currentPeriod={currentPeriod}
                     currentPeriodHalf={currentPeriodHalf}
                     awayTeamDetails={awayTeamDetails}
